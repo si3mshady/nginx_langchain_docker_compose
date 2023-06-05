@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   nginx:
     image: nginx:latest
@@ -9,7 +8,6 @@ services:
       - "888:80"
     depends_on:
       - flask
-
   flask:
     build: 
       context: ./app1
@@ -17,11 +15,9 @@ services:
     # container_name: flask #cant use container name key when scaling as container names == dns names 
     ports:
      - "5000"
-      
+    
   #reverse proxy -> loadbalancer 
+  #docker-compose down
   # docker-compose up --force-recreate --scale flask=5
+  # docker-compose build --no-cache
 
-
-networks:
-  lb_net:
-    driver: bridge
